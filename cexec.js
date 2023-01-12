@@ -1,9 +1,9 @@
 const { spawn } = require("node:child_process");
 
-function cexec(cmd) {
+function cexec(cmd, nodeArgs) {
   // console.log("cexec", cmd);
   let args = cmd.split(' ');
-  const path = args.shift();
+  const path = args.shift() + " " + (nodeArgs || []).join(" ");
 
   const child = spawn(path, args, {
     cwd: process.cwd(),
